@@ -286,7 +286,7 @@ export default function App() {
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> {profile.status}
           </div>
           <div className="flex items-center gap-5 mb-6">
-            <img src="/yugendiran.jpg" alt="Yugendiran Senthilkumar" className="h-20 w-20 sm:h-24 sm:w-24 rounded-2xl object-cover ring-2 ring-accent/40" />
+            <img src={`${import.meta.env.BASE_URL}yugendiran.jpg`} alt="Yugendiran Senthilkumar" className="h-20 w-20 sm:h-24 sm:w-24 rounded-2xl object-cover ring-2 ring-accent/40" />
             <div>
               <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-none">
                 {profile.name}
