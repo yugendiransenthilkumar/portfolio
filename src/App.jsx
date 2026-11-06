@@ -55,7 +55,7 @@ function Terminal() {
   }, [run])
 
   return (
-    <div className="rounded-xl border border-line bg-panel/90 shadow-2xl shadow-sky-950/40 overflow-hidden">
+    <div className="w-full min-w-0 rounded-xl border border-line bg-panel/90 shadow-2xl shadow-sky-950/40 overflow-hidden">
       <div className="flex items-center justify-between px-4 py-2.5 border-b border-line bg-ink/60">
         <div className="flex gap-1.5">
           <span className="h-3 w-3 rounded-full bg-red-400/80" />
@@ -71,11 +71,11 @@ function Terminal() {
           ↻ replay
         </button>
       </div>
-      <div className="p-4 sm:p-5 font-mono text-[12.5px] sm:text-sm leading-7 min-h-[230px]">
+      <div className="p-3 sm:p-5 font-mono text-[11px] sm:text-sm leading-6 sm:leading-7 min-h-[200px] sm:min-h-[230px] overflow-x-auto">
         {shown.map((l, i) => (
-          <div key={i} className={l.c}>{l.t}</div>
+          <div key={i} className={`${l.c} whitespace-pre`}>{l.t}</div>
         ))}
-        {shown.length < terminalLines.length && <div className="text-slate-200 caret">{typing}</div>}
+        {shown.length < terminalLines.length && <div className="text-slate-200 caret whitespace-pre">{typing}</div>}
         {shown.length === terminalLines.length && <div className="text-slate-500 caret">$ </div>}
       </div>
     </div>
@@ -86,7 +86,7 @@ function Header() {
   const [open, setOpen] = useState(false)
   return (
     <header className="fixed top-0 inset-x-0 z-50 backdrop-blur bg-ink/70 border-b border-line/60">
-      <div className="max-w-6xl mx-auto flex items-center justify-between px-5 h-16">
+      <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-5 h-14 sm:h-16">
         <a href="#top" className="font-mono font-semibold text-white">
           <span className="text-accent">&lt;</span>YS<span className="text-accent"> /&gt;</span>
         </a>
@@ -95,12 +95,12 @@ function Header() {
             <a key={n} href={`#${slug(n)}`} className="hover:text-white transition">{n}</a>
           ))}
         </nav>
-        <button className="md:hidden text-slate-300" onClick={() => setOpen(!open)} aria-label="Menu">☰</button>
+        <button className="md:hidden text-slate-300 text-2xl leading-none p-2 -mr-2" onClick={() => setOpen(!open)} aria-label="Menu" aria-expanded={open}>{open ? '✕' : '☰'}</button>
       </div>
       {open && (
-        <nav className="md:hidden flex flex-col px-5 pb-4 gap-3 text-slate-300">
+        <nav className="md:hidden flex flex-col px-4 pb-3 text-slate-300 border-t border-line/60">
           {nav.map((n) => (
-            <a key={n} href={`#${slug(n)}`} onClick={() => setOpen(false)}>{n}</a>
+            <a key={n} href={`#${slug(n)}`} onClick={() => setOpen(false)} className="py-3 border-b border-line/40 last:border-0 hover:text-white">{n}</a>
           ))}
         </nav>
       )}
@@ -110,9 +110,9 @@ function Header() {
 
 function Section({ id, kicker, title, children }) {
   return (
-    <section id={id} className="max-w-6xl mx-auto px-5 py-20 sm:py-24 reveal">
+    <section id={id} className="max-w-6xl mx-auto px-4 sm:px-5 py-14 sm:py-24 scroll-mt-16 reveal">
       <p className="font-mono text-sm text-accent mb-2">{kicker}</p>
-      <h2 className="text-3xl sm:text-4xl font-bold text-white mb-10">{title}</h2>
+      <h2 className="text-2xl sm:text-4xl font-bold text-white mb-8 sm:mb-10">{title}</h2>
       {children}
     </section>
   )
@@ -128,7 +128,7 @@ const statusStyle = {
 function ProjectCard({ p, i }) {
   const [open, setOpen] = useState(false)
   return (
-    <article className="group rounded-xl border border-line bg-panel/60 p-6 hover:border-accent/50 transition flex flex-col">
+    <article className="group rounded-xl border border-line bg-panel/60 p-5 sm:p-6 hover:border-accent/50 transition flex flex-col min-w-0">
       <div className="flex items-start justify-between gap-3 mb-3">
         <span className="font-mono text-sm text-slate-500">{String(i + 1).padStart(2, '0')}</span>
         <span className={`font-mono text-[11px] px-2 py-0.5 rounded-full border ${statusStyle[p.status]}`}>
@@ -166,7 +166,7 @@ function Projects() {
   const list = cat === 'All' ? projects : projects.filter((p) => p.category === cat)
   return (
     <Section id="projects" kicker="03 / projects" title="Things I've built">
-      <div className="flex gap-2 mb-8">
+      <div className="flex flex-wrap gap-2 mb-8">
         {cats.map((c) => (
           <button
             key={c}
@@ -177,7 +177,7 @@ function Projects() {
           </button>
         ))}
       </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {list.map((p) => <ProjectCard key={p.title} p={p} i={projects.indexOf(p)} />)}
       </div>
       <p className="mt-8 text-slate-400 text-sm">
@@ -212,7 +212,7 @@ function FitCheck() {
             className="w-full rounded-xl bg-panel border border-line p-4 text-sm text-slate-200 placeholder:text-slate-600 focus:outline-none focus:border-accent"
           />
         </div>
-        <div className="rounded-xl border border-line bg-panel/60 p-6">
+        <div className="rounded-xl border border-line bg-panel/60 p-5 sm:p-6 min-w-0">
           {matches.length === 0 ? (
             <p className="text-slate-500 font-mono text-sm">// matches will appear here</p>
           ) : (
@@ -222,7 +222,7 @@ function FitCheck() {
                 {matches.map(([k, v]) => (
                   <li key={k} className="flex gap-3 text-sm">
                     <span className="text-emerald-400">✓</span>
-                    <span><span className="font-mono text-accent">{k}</span> <span className="text-slate-300">· {v}</span></span>
+                    <span className="min-w-0 break-words"><span className="font-mono text-accent">{k}</span> <span className="text-slate-300">· {v}</span></span>
                   </li>
                 ))}
               </ul>
@@ -247,19 +247,19 @@ function Contact() {
   const input = 'w-full rounded-lg bg-ink border border-line px-4 py-3 text-sm focus:outline-none focus:border-accent'
   return (
     <Section id="contact" kicker="06 / contact" title="Let's build something">
-      <div className="grid lg:grid-cols-2 gap-10">
+      <div className="grid lg:grid-cols-2 gap-8 sm:gap-10">
         <div>
-          <p className="text-slate-300 text-lg leading-relaxed mb-8">
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-8">
             Hiring a Java or full-stack intern, or have a project idea? My inbox is open.
           </p>
-          <div className="space-y-3 font-mono text-sm">
+          <div className="space-y-3 font-mono text-xs sm:text-sm break-all">
             <a href={`mailto:${profile.email}`} className="block text-slate-300 hover:text-accent">✉ {profile.email}</a>
             <a href={profile.linkedin} target="_blank" rel="noreferrer" className="block text-slate-300 hover:text-accent">in linkedin.com/in/yugendiran-senthilkumar</a>
             <a href={profile.github} target="_blank" rel="noreferrer" className="block text-slate-300 hover:text-accent">⌥ github.com/yugendiransenthilkumar</a>
             <p className="text-slate-500">⌖ {profile.location}</p>
           </div>
         </div>
-        <form onSubmit={send} className="rounded-xl border border-line bg-panel/60 p-6 space-y-4">
+        <form onSubmit={send} className="rounded-xl border border-line bg-panel/60 p-5 sm:p-6 space-y-4">
           <input required placeholder="Your name" className={input} value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
           <input required type="email" placeholder="Your email" className={input} value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
           <textarea required rows={5} placeholder="Message" className={input} value={form.message} onChange={(e) => setForm({ ...form, message: e.target.value })} />
@@ -274,39 +274,39 @@ export default function App() {
   useReveal()
   const year = new Date().getFullYear()
   return (
-    <div id="top" className="relative">
+    <div id="top" className="relative overflow-x-hidden">
       <div className="absolute inset-x-0 top-0 h-[720px] grid-bg pointer-events-none" />
-      <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[480px] w-[780px] rounded-full bg-sky-500/10 blur-3xl pointer-events-none" />
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[320px] w-[90vw] max-w-[780px] sm:h-[480px] rounded-full bg-sky-500/10 blur-3xl pointer-events-none" />
       <Header />
 
       {/* Hero */}
-      <section className="relative max-w-6xl mx-auto px-5 pt-32 sm:pt-40 pb-16 grid lg:grid-cols-[1.1fr_1fr] gap-12 items-center">
-        <div>
+      <section className="relative max-w-6xl mx-auto px-4 sm:px-5 pt-24 sm:pt-40 pb-12 sm:pb-16 grid lg:grid-cols-[1.1fr_1fr] gap-10 lg:gap-12 items-center">
+        <div className="min-w-0">
           <div className="inline-flex items-center gap-2 font-mono text-xs text-emerald-300 border border-emerald-400/30 bg-emerald-400/10 rounded-full px-3 py-1 mb-6">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" /> {profile.status}
           </div>
-          <div className="flex items-center gap-5 mb-6">
-            <img src={`${import.meta.env.BASE_URL}yugendiran.jpg`} alt="Yugendiran Senthilkumar" className="h-20 w-20 sm:h-24 sm:w-24 rounded-2xl object-cover ring-2 ring-accent/40" />
+          <div className="flex flex-col min-[400px]:flex-row min-[400px]:items-center gap-4 sm:gap-5 mb-6">
+            <img src={`${import.meta.env.BASE_URL}yugendiran.jpg`} alt="Yugendiran Senthilkumar" className="h-20 w-20 sm:h-24 sm:w-24 shrink-0 rounded-2xl object-cover ring-2 ring-accent/40" />
             <div>
-              <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-none">
+              <h1 className="text-[2.1rem] sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-none break-words">
                 {profile.name}
               </h1>
-              <p className="text-2xl sm:text-3xl font-bold text-slate-500 mt-1">{profile.surname}</p>
+              <p className="text-xl sm:text-3xl font-bold text-slate-500 mt-1 break-words">{profile.surname}</p>
             </div>
           </div>
           <p className="font-mono text-accent mb-4">{'// '}{profile.role}</p>
-          <p className="text-lg text-slate-300 max-w-xl leading-relaxed mb-8">{profile.tagline}</p>
-          <div className="flex flex-wrap gap-3">
-            <a href="#projects" className="font-semibold text-ink bg-accent px-5 py-3 rounded-lg hover:bg-white transition">See my work</a>
-            <a href="#contact" className="font-semibold text-white border border-line px-5 py-3 rounded-lg hover:border-accent transition">Contact me</a>
+          <p className="text-base sm:text-lg text-slate-300 max-w-xl leading-relaxed mb-8">{profile.tagline}</p>
+          <div className="flex flex-col min-[400px]:flex-row flex-wrap gap-3">
+            <a href="#projects" className="text-center font-semibold text-ink bg-accent px-5 py-3 rounded-lg hover:bg-white transition">See my work</a>
+            <a href="#contact" className="text-center font-semibold text-white border border-line px-5 py-3 rounded-lg hover:border-accent transition">Contact me</a>
           </div>
         </div>
         <Terminal />
       </section>
 
       <Section id="about" kicker="01 / about" title="Hi, I'm Yugendiran">
-        <div className="grid lg:grid-cols-[1.4fr_1fr] gap-10">
-          <div className="space-y-5 text-lg text-slate-300 leading-relaxed">
+        <div className="grid lg:grid-cols-[1.4fr_1fr] gap-8 lg:gap-10">
+          <div className="space-y-5 text-base sm:text-lg text-slate-300 leading-relaxed">
             {about.map((p) => <p key={p}>{p}</p>)}
           </div>
           <div className="grid grid-cols-2 gap-4 self-start">
@@ -316,8 +316,8 @@ export default function App() {
               [profile.cgpa, 'CGPA'],
               ['2027', 'graduating'],
             ].map(([n, l]) => (
-              <div key={l} className="rounded-xl border border-line bg-panel/60 p-5">
-                <p className="text-3xl font-bold text-white">{n}</p>
+              <div key={l} className="rounded-xl border border-line bg-panel/60 p-4 sm:p-5">
+                <p className="text-2xl sm:text-3xl font-bold text-white">{n}</p>
                 <p className="font-mono text-xs text-slate-500 mt-1">{l}</p>
               </div>
             ))}
@@ -326,9 +326,9 @@ export default function App() {
       </Section>
 
       <Section id="skills" kicker="02 / skills" title="My toolkit">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {skills.map((g) => (
-            <div key={g.group} className="rounded-xl border border-line bg-panel/60 p-6">
+            <div key={g.group} className="rounded-xl border border-line bg-panel/60 p-5 sm:p-6">
               <p className="font-mono text-sm text-slate-500 mb-4">{g.group}</p>
               <div className="flex flex-wrap gap-2">
                 {g.items.map((s) => (
@@ -346,7 +346,7 @@ export default function App() {
       <Section id="experience" kicker="05 / journey" title="Experience & education">
         <ol className="relative border-l border-line ml-2 space-y-10">
           {experience.map((e) => (
-            <li key={e.role} className="pl-8 relative">
+            <li key={e.role} className="pl-6 sm:pl-8 relative">
               <span className="absolute -left-[7px] top-1.5 h-3.5 w-3.5 rounded-full bg-ink border-2 border-accent" />
               <p className="font-mono text-xs text-accent mb-1">{e.when}</p>
               <h3 className="text-lg font-semibold text-white">{e.role}</h3>
@@ -358,7 +358,7 @@ export default function App() {
           ))}
         </ol>
         <h3 className="font-mono text-sm text-slate-500 mt-16 mb-5">recognition</h3>
-        <div className="grid sm:grid-cols-3 gap-5">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {achievements.map((a) => (
             <div key={a.title} className="rounded-xl border border-line bg-panel/60 p-5">
               <p className="text-2xl mb-2">🏆</p>
@@ -373,7 +373,7 @@ export default function App() {
       <Contact />
 
       <footer className="border-t border-line">
-        <div className="max-w-6xl mx-auto px-5 py-8 flex flex-col sm:flex-row gap-3 justify-between text-sm text-slate-500">
+        <div className="max-w-6xl mx-auto px-4 sm:px-5 py-8 flex flex-col sm:flex-row gap-3 justify-between text-center sm:text-left text-xs sm:text-sm text-slate-500">
           <p>© {year} Yugendiran Senthilkumar</p>
           <p className="font-mono">Built with React, Vite & Tailwind · deployed on Vercel</p>
         </div>

@@ -10,7 +10,10 @@
   --color-java: #f89820;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html, body { overflow-x: hidden; max-width: 100%; }
+img { max-width: 100%; height: auto; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .reveal { opacity: 1; transform: none; transition: none; } }
 body { @apply bg-ink text-slate-200 font-sans antialiased; }
 ::selection { background: #38bdf833; }
 
