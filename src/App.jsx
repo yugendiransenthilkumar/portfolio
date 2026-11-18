@@ -22,7 +22,7 @@ const terminalLines = [
   { t: '> role      : "Java Full Stack Developer"', c: 'text-slate-200' },
   { t: '> college   : "Jeppiaar Engineering College, 2027"', c: 'text-slate-200' },
   { t: '> stack     : [Java, Spring Boot, React, SQL]', c: 'text-slate-200' },
-  { t: '> shipping  : SP Motors (live), Placement Portal', c: 'text-slate-200' },
+  { t: '> shipping  : SP Motors & JK Mobile (live), Placement Portal', c: 'text-slate-200' },
   { t: '> status    : OPEN_TO_WORK', c: 'text-emerald-400' },
 ]
 
@@ -349,8 +349,8 @@ export default function App() {
           </div>
           <div className="grid grid-cols-2 gap-4 self-start">
             {[
-              ['5', 'projects'],
-              ['1', 'live product'],
+              [String(projects.length), 'projects'],
+              [String(projects.filter((p) => p.status === 'Live').length), 'live products'],
               [profile.cgpa, 'CGPA'],
               ['2027', 'graduating'],
             ].map(([n, l]) => (
