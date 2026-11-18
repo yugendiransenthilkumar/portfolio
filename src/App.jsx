@@ -271,7 +271,43 @@ function Contact() {
   )
 }
 
+function ProofModal({ a, onClose }) {
+  const p = a.proof
+  useEffect(() => {
+    const onKey = (e) => e.key === 'Escape' && onClose()
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = '' }
+  }, [onClose])
+  return (
+    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6" onClick={onClose} role="dialog" aria-modal="true" aria-label={`${a.title} proof`}>
+      <div className="w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl border border-line bg-panel p-5 sm:p-7" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-start justify-between gap-4 mb-4">
+          <div className="min-w-0">
+            <p className="font-mono text-xs text-accent mb-1">verified · {p.date}</p>
+            <h3 className="text-xl sm:text-2xl font-semibold text-white">🏆 {a.title} — {p.event}</h3>
+            <p className="text-sm text-slate-400 mt-1">{p.organizer}</p>
+          </div>
+          <button onClick={onClose} className="shrink-0 text-slate-400 hover:text-white text-2xl leading-none" aria-label="Close">×</button>
+        </div>
+        <p className="text-slate-300 text-sm sm:text-base mb-5">{p.summary}</p>
+        <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-6">
+          {p.photos.map((ph, i) => (
+            <img key={ph.src} src={ph.src} alt={ph.alt} loading="lazy"
+              className={`w-full rounded-lg border border-line object-cover ${i === 0 ? 'col-span-2 max-h-80' : 'h-32 sm:h-44'}`} />
+          ))}
+        </div>
+        <a href={p.post} target="_blank" rel="noreferrer"
+          className="inline-flex items-center gap-2 rounded-full bg-accent text-ink font-semibold px-5 py-2.5 hover:bg-white transition">
+          View original LinkedIn post ↗
+        </a>
+      </div>
+    </div>
+  )
+}
+
 export default function App() {
+  const [proof, setProof] = useState(null)
   useReveal()
   const year = new Date().getFullYear()
   return (
@@ -361,15 +397,27 @@ export default function App() {
         </ol>
         <h3 className="font-mono text-sm text-slate-500 mt-16 mb-5">recognition</h3>
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-          {achievements.map((a) => (
-            <div key={a.title} className="rounded-xl border border-line bg-panel/60 p-5">
-              <p className="text-2xl mb-2">🏆</p>
-              <p className="font-semibold text-white">{a.title}</p>
-              <p className="text-sm text-slate-400">{a.where}</p>
-              {a.note && <p className="text-xs text-slate-500 mt-1">{a.note}</p>}
-            </div>
-          ))}
+          {achievements.map((a) => {
+            const body = (
+              <>
+                <p className="text-2xl mb-2">🏆</p>
+                <p className="font-semibold text-white">{a.title}</p>
+                <p className="text-sm text-slate-400">{a.where}</p>
+                {a.note && <p className="text-xs text-slate-500 mt-1">{a.note}</p>}
+                {a.proof && <p className="text-xs text-accent mt-3 font-mono">view proof →</p>}
+              </>
+            )
+            return a.proof ? (
+              <button key={a.title} type="button" onClick={() => setProof(a)}
+                className="text-left rounded-xl border border-line bg-panel/60 p-5 hover:border-slate-500 hover:bg-panel transition cursor-pointer">
+                {body}
+              </button>
+            ) : (
+              <div key={a.title} className="rounded-xl border border-line bg-panel/60 p-5">{body}</div>
+            )
+          })}
         </div>
+        {proof && <ProofModal a={proof} onClose={() => setProof(null)} />}
       </Section>
 
       <Contact />

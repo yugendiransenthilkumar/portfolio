@@ -135,7 +135,24 @@ export const experience = [
 ]
 
 export const achievements = [
-  { title: 'Winner, Ideathon', where: 'Jeppiaar Engineering College', note: 'Certificate & Shield' },
+  {
+    title: 'Winner, Ideathon',
+    where: 'Jeppiaar Engineering College',
+    note: 'Certificate & Shield',
+    proof: {
+      event: 'FuturaX 2K25 – Innovision',
+      organizer: 'Department of IT, Jeppiaar Engineering College',
+      date: 'October 2025',
+      summary: 'Our team won the "Winner" title for Predictive Analysis for Hospital Resource Optimization, using AI and data-driven insights to improve healthcare efficiency and decision-making.',
+      post: 'https://www.linkedin.com/feed/update/urn:li:activity:7382023991580008448/',
+      photos: [
+        { src: '/proof/futurax-2.jpg', alt: 'Receiving the winner certificate at FuturaX 2K25' },
+        { src: '/proof/futurax-1.jpg', alt: 'Presenting the project on stage' },
+        { src: '/proof/futurax-4.jpg', alt: 'Presenting outcome measures to the judges' },
+        { src: '/proof/futurax-3.jpg', alt: 'Discussing the project with judges' },
+      ],
+    },
+  },
   { title: 'Winner, AI Quiz', where: 'Alpha Engineering College', note: '' },
   { title: 'Hackathon participant', where: 'Inter-college hackathons', note: 'Problem solving under time pressure' },
 ]
