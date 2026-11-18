@@ -291,10 +291,10 @@ function ProofModal({ a, onClose }) {
           <button onClick={onClose} className="shrink-0 text-slate-400 hover:text-white text-2xl leading-none" aria-label="Close">×</button>
         </div>
         <p className="text-slate-300 text-sm sm:text-base mb-5">{p.summary}</p>
-        <div className="grid grid-cols-2 gap-2 sm:gap-3 mb-6">
+        <div className="grid grid-cols-3 gap-2 sm:gap-3 mb-6">
           {p.photos.map((ph, i) => (
             <img key={ph.src} src={ph.src} alt={ph.alt} loading="lazy"
-              className={`w-full rounded-lg border border-line object-cover ${i === 0 ? 'col-span-2 max-h-80' : 'h-32 sm:h-44'}`} />
+              className={`w-full rounded-lg border border-line object-cover ${i === 0 ? 'col-span-3 max-h-80' : 'h-24 sm:h-36'}`} />
           ))}
         </div>
         <a href={p.post} target="_blank" rel="noreferrer"
