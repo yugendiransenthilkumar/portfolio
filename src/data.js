@@ -114,7 +114,7 @@ export const experience = [
   {
     role: 'Java Full Stack Developer Intern',
     org: 'Altruisty Innovation Pvt Ltd',
-    when: 'Jul 2026 – Completed',
+    when: 'Jul 7 – Aug 25, 2026',
     points: [
       'Built the College Transportation mobile app in Java.',
       'Worked in a team with industry mentors on real project workflows.',
