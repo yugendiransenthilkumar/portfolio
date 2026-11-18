@@ -14,6 +14,7 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/yugendiran-senthilkumar',
   github: 'https://github.com/yugendiransenthilkumar',
   status: 'Open to internships & 2027 full-time roles',
+  cv: '/Yugendiran_Senthilkumar_Resume.pdf',
 }
 
 export const about = [
@@ -31,6 +32,23 @@ export const skills = [
 
 // status: 'Live' | 'In progress' | 'Building' | 'Completed'
 export const projects = [
+  {
+    title: 'JK Mobile',
+    subtitle: 'Shop website, repair tracking & admin app',
+    status: 'Live',
+    category: 'Web',
+    year: 2026,
+    stack: ['HTML', 'CSS', 'JavaScript (ES Modules)', 'Firebase Auth', 'Cloud Firestore', 'PWA', 'Vercel'],
+    summary: 'A production website and repair-tracking system for JK Mobile, a mobile sales & service shop in Panapakkam: customers track their repair on their phone, and the owner runs every job from an installable admin app.',
+    how: [
+      'Public site with services, brands, live offers, shop timings and map, all editable from the admin app.',
+      'Customers track a repair with a WhatsApp link or their Job ID plus the last 4 digits of their phone.',
+      'Admin PWA: dashboard of pending, ready and delivered jobs, search and filters, status updates, WhatsApp/call, and printable job slips for 80 mm thermal printers.',
+      'Firebase Auth (email + password, admin-only) and Cloud Firestore with strict security rules: private job data stays admin-only, customers can read only one exact public status record.',
+      'Job IDs issued with Firestore transactions; deployed on Vercel with security headers, CSP and caching.',
+    ],
+    live: 'https://jk-mobiles-omega.vercel.app',
+  },
   {
     title: 'SP Motors',
     subtitle: 'Car dealer e-commerce website',
@@ -161,4 +179,7 @@ export const fitKeywords = {
   'problem solving': 'Ideathon winner; DSA practice in Java',
   bootstrap: 'Bootstrap in the Hospital Management Dashboard',
   tailwind: 'Tailwind CSS (this portfolio)',
+  firebase: 'Firebase Auth and Firestore in the JK Mobile repair-tracking app',
+  firestore: 'Cloud Firestore with security rules in JK Mobile',
+  pwa: 'Installable admin PWA for JK Mobile',
 }

@@ -257,6 +257,7 @@ function Contact() {
             <a href={profile.linkedin} target="_blank" rel="noreferrer" className="block text-slate-300 hover:text-accent">in linkedin.com/in/yugendiran-senthilkumar</a>
             <a href={profile.github} target="_blank" rel="noreferrer" className="block text-slate-300 hover:text-accent">⌥ github.com/yugendiransenthilkumar</a>
             <p className="text-slate-500">⌖ {profile.location}</p>
+            <a href={profile.cv} download="Yugendiran_Senthilkumar_Resume.pdf" className="inline-block mt-3 font-sans font-semibold text-ink bg-accent px-4 py-2 rounded-lg hover:bg-white transition">Download CV ↓</a>
           </div>
         </div>
         <form onSubmit={send} className="rounded-xl border border-line bg-panel/60 p-5 sm:p-6 space-y-4">
@@ -299,6 +300,7 @@ export default function App() {
           <div className="flex flex-col min-[400px]:flex-row flex-wrap gap-3">
             <a href="#projects" className="text-center font-semibold text-ink bg-accent px-5 py-3 rounded-lg hover:bg-white transition">See my work</a>
             <a href="#contact" className="text-center font-semibold text-white border border-line px-5 py-3 rounded-lg hover:border-accent transition">Contact me</a>
+            <a href={profile.cv} download="Yugendiran_Senthilkumar_Resume.pdf" className="text-center font-semibold text-white border border-line px-5 py-3 rounded-lg hover:border-accent transition">Download CV ↓</a>
           </div>
         </div>
         <Terminal />
