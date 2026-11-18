@@ -423,9 +423,8 @@ export default function App() {
       <Contact />
 
       <footer className="border-t border-line">
-        <div className="max-w-6xl mx-auto px-4 sm:px-5 py-8 flex flex-col sm:flex-row gap-3 justify-between text-center sm:text-left text-xs sm:text-sm text-slate-500">
+        <div className="max-w-6xl mx-auto px-4 sm:px-5 py-8 flex flex-col sm:flex-row gap-3 justify-center text-center sm:text-left text-xs sm:text-sm text-slate-500">
           <p>© {year} Yugendiran Senthilkumar</p>
-          <p className="font-mono">Built with React, Vite & Tailwind · deployed on Vercel</p>
         </div>
       </footer>
     </div>

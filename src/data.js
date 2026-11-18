@@ -18,7 +18,7 @@ export const profile = {
 }
 
 export const about = [
-  "I'm a B.Tech IT student at Jeppiaar Engineering College, Chennai, and a Java Full Stack Developer Intern at Altruisty Innovation. I like turning real problems into working software: a car dealer's storefront, a college bus tracker, a placement portal for my own batch.",
+  "I'm a B.Tech IT student at Jeppiaar Engineering College, Chennai, who completed a Java Full Stack Developer internship at Altruisty Innovation. I like turning real problems into working software: a car dealer's storefront, a college bus tracker, a placement portal for my own batch.",
   'Right now I\'m sharpening Core Java, DSA, and Spring Boot, and shipping projects end to end: design, backend, database, deployment.',
 ]
 
@@ -70,7 +70,7 @@ export const projects = [
   {
     title: 'College Transportation App',
     subtitle: 'Android app · Altruisty internship',
-    status: 'In progress',
+    status: 'Completed',
     category: 'Java',
     year: 2026,
     stack: ['Java', 'Android', 'XML Layouts'],
@@ -78,7 +78,7 @@ export const projects = [
     how: [
       'Written in Java with multiple activities for routes, schedules, and driver info.',
       'Dynamic UI components render each route and its stops.',
-      'Being built as part of my Java Full Stack internship at Altruisty Innovation.',
+      'Built as part of my Java Full Stack internship at Altruisty Innovation.',
     ],
   },
   {
@@ -114,10 +114,10 @@ export const experience = [
   {
     role: 'Java Full Stack Developer Intern',
     org: 'Altruisty Innovation Pvt Ltd',
-    when: 'Jul 2026 – Present',
+    when: 'Jul 2026 – Completed',
     points: [
-      'Building the College Transportation mobile app in Java.',
-      'Working in a team with industry mentors on real project workflows.',
+      'Built the College Transportation mobile app in Java.',
+      'Worked in a team with industry mentors on real project workflows.',
     ],
   },
   {
