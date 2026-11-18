@@ -10,7 +10,7 @@ export const profile = {
   degree: 'B.Tech Information Technology',
   batch: '2023 – 2027',
   cgpa: '7.5',
-  email: 'yugendiranyugi46@gmail.com',
+  email: 'yugendiransenthilkumar@gmail.com',
   linkedin: 'https://www.linkedin.com/in/yugendiran-senthilkumar',
   github: 'https://github.com/yugendiransenthilkumar',
   status: 'Open to internships & 2027 full-time roles',
